@@ -1,8 +1,17 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import ResultCard from "../components/ResultCard";
-import { useNavigate } from "react-router-dom"
+
+export default function Test(){
 
 const navigate = useNavigate();
+
+const savedRisk =
+localStorage.getItem(
+"riskLevel"
+);
+}
 
 const questions = [
 
