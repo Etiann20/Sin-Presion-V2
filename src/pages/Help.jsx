@@ -1,12 +1,6 @@
-import { useState }
-
-from "react";
+import { useState } from "react";
 
 export default function Help(){
-
-const [sent,setSent] =
-
-useState(false);
 
 const level =
 
@@ -14,47 +8,85 @@ localStorage.getItem(
 "riskLevel"
 ) || "green";
 
+const [name,setName] =
+
+useState("");
+
+const [mail,setMail] =
+
+useState("");
+
+const [message,setMessage] =
+
+useState("");
+
+const [sent,setSent] =
+
+useState(false);
+
 const content={
 
 green:{
 
-title:"Ayuda e información para perfiles de riesgo bajo",
+title:
 
-color:"green",
+"Ayuda e información para perfiles de riesgo bajo",
+
+color:
+
+"green",
 
 intro:
 
-"Tu evaluación muestra un escenario preventivo favorable. El objetivo principal es fortalecer hábitos protectores.",
+"Tu evaluación muestra pocos factores de riesgo. El objetivo principal es mantener hábitos protectores y reforzar herramientas preventivas.",
 
 sections:[
 
 {
 
-title:"Mantener hábitos saludables",
+title:
+
+"Hábitos protectores",
 
 text:
 
-"Rutinas estables, actividad física, descanso y espacios recreativos ayudan a mantener bienestar emocional."
+"Mantener rutinas saludables, actividad física, descanso adecuado y espacios recreativos ayuda a mantener estabilidad emocional y disminuir riesgos futuros."
 
 },
 
 {
 
-title:"Presión social",
+title:
+
+"Manejo de presión social",
 
 text:
 
-"Practicar respuestas ante presión de pares permite tomar decisiones más seguras en situaciones complejas."
+"Practicar respuestas frente a presión de pares permite tomar decisiones más seguras y mantener límites personales."
 
 },
 
 {
 
-title:"Redes de apoyo",
+title:
+
+"Fortalecer redes",
 
 text:
 
-"Construir relaciones positivas disminuye vulnerabilidades futuras."
+"Relaciones positivas, amistades saludables y apoyo familiar funcionan como factores protectores importantes."
+
+},
+
+{
+
+title:
+
+"Prevención continua",
+
+text:
+
+"Seguir informándote y reflexionando sobre tus decisiones ayuda a mantener conductas saludables a largo plazo."
 
 }
 
@@ -64,43 +96,65 @@ text:
 
 yellow:{
 
-title:"Ayuda e información para perfiles de riesgo medio",
+title:
 
-color:"yellow",
+"Ayuda e información para perfiles de riesgo medio",
+
+color:
+
+"yellow",
 
 intro:
 
-"Existen factores que pueden aumentar vulnerabilidades. Detectarlos temprano permite prevenir dificultades mayores.",
+"Existen factores que pueden aumentar vulnerabilidades. Detectarlos tempranamente ayuda a prevenir riesgos mayores.",
 
 sections:[
 
 {
 
-title:"Reconocer detonantes",
+title:
+
+"Identificar detonantes",
 
 text:
 
-"Identifica emociones, personas o contextos que aumenten deseo de consumir o normalicen conductas riesgosas."
+"Reconocer emociones, contextos o situaciones que aumentan el riesgo ayuda a prepararse mejor para enfrentarlas."
 
 },
 
 {
 
-title:"Manejo emocional",
+title:
+
+"Manejo emocional",
 
 text:
 
-"Estrategias de regulación emocional y manejo del estrés reducen decisiones impulsivas."
+"Aprender técnicas para controlar ansiedad, estrés o impulsividad disminuye conductas riesgosas."
 
 },
 
 {
 
-title:"Buscar apoyo",
+title:
+
+"Buscar apoyo",
 
 text:
 
-"Hablar con cercanos, profesores o familiares puede generar protección adicional."
+"Conversar con cercanos, docentes o familiares puede entregar apoyo emocional y orientación."
+
+},
+
+{
+
+title:
+
+"Construcción de hábitos",
+
+text:
+
+"Crear rutinas saludables ayuda a disminuir exposición a situaciones de riesgo."
 
 }
 
@@ -110,43 +164,65 @@ text:
 
 red:{
 
-title:"Ayuda e información para perfiles de riesgo alto",
+title:
 
-color:"red",
+"Ayuda e información para perfiles de riesgo alto",
+
+color:
+
+"red",
 
 intro:
 
-"Tu resultado muestra presencia importante de factores de riesgo. Pedir apoyo temprano puede marcar una diferencia importante.",
+"Tu resultado muestra presencia importante de factores de riesgo. Buscar apoyo temprano puede ayudarte significativamente.",
 
 sections:[
 
 {
 
-title:"No enfrentar esto solo",
+title:
+
+"No enfrentar esto solo",
 
 text:
 
-"Buscar apoyo cercano o profesional puede disminuir aislamiento y aumentar recursos personales."
+"Hablar con personas de confianza puede disminuir aislamiento y facilitar apoyo oportuno."
 
 },
 
 {
 
-title:"Identificar situaciones críticas",
+title:
+
+"Identificar situaciones críticas",
 
 text:
 
-"Reconocer momentos, emociones o lugares asociados facilita prevenir recaídas."
+"Reconocer emociones, lugares o personas asociadas al consumo ayuda a prevenir recaídas."
 
 },
 
 {
 
-title:"Apoyo profesional",
+title:
+
+"Apoyo profesional",
 
 text:
 
-"Considera orientación psicológica, escolar, familiar o de salud para acompañamiento continuo."
+"Considera orientación psicológica, escolar o de salud para contar con acompañamiento continuo."
+
+},
+
+{
+
+title:
+
+"Construir un plan",
+
+text:
+
+"Pequeños cambios sostenidos, objetivos cortos y apoyo externo suelen generar mejores resultados."
 
 }
 
@@ -163,6 +239,12 @@ content[level];
 function send(){
 
 setSent(true);
+
+setName("");
+
+setMail("");
+
+setMessage("");
 
 }
 
@@ -232,13 +314,61 @@ Solicitar apoyo profesional
 
 </h2>
 
-<input placeholder="Nombre"/>
+<input
 
-<input placeholder="Correo"/>
+placeholder="Nombre"
 
-<textarea placeholder="Describe tu situación"/>
+value={name}
 
-<button onClick={send}>
+onChange={(e)=>
+
+setName(
+e.target.value
+)
+
+}
+
+/>
+
+<input
+
+placeholder="Correo"
+
+value={mail}
+
+onChange={(e)=>
+
+setMail(
+e.target.value
+)
+
+}
+
+/>
+
+<textarea
+
+placeholder=
+
+"Describe tu situación"
+
+value={message}
+
+onChange={(e)=>
+
+setMessage(
+e.target.value
+)
+
+}
+
+/>
+
+<button
+
+onClick={send}
+
+>
 
 Enviar solicitud
 

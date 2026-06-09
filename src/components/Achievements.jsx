@@ -1,71 +1,156 @@
 import { differenceInDays } from "date-fns";
 
-export default function Achievements() {
+export default function Achievements(){
 
-  const lastUse =
-    localStorage.getItem("lastUse");
+const savedDate =
 
-  if (!lastUse) {
+localStorage.getItem(
+"startDate"
+);
 
-    return null;
+const startDate =
 
-  }
+savedDate ||
 
-  const days =
-    differenceInDays(
-      new Date(),
-      new Date(lastUse)
-    );
+new Date()
+.toISOString()
+.split("T")[0];
 
-  const achievements = [];
+const days = Math.max(
 
-  if (days >= 3)
-    achievements.push("💪 3 días");
+0,
 
-  if (days >= 7)
-    achievements.push("🔥 7 días");
+differenceInDays(
 
-  if (days >= 15)
-    achievements.push("⭐ 15 días");
+new Date(),
 
-  if (days >= 30)
-    achievements.push("🏆 30 días");
+new Date(startDate)
 
-  return (
+)
 
-    <div className="achievement-box">
+);
 
-      <h2>
+const achievements = [
 
-        Logros
+{
+days:1,
+title:"Primer paso"
+},
 
-      </h2>
+{
+days:3,
+title:"3 días"
+},
 
-      <div className="badges">
+{
+days:7,
+title:"1 semana"
+},
 
-        {
+{
+days:15,
+title:"15 días"
+},
 
-          achievements.map(
-            (item, index) => (
+{
+days:30,
+title:"1 mes"
+},
 
-              <div
-                key={index}
-                className="badge-card"
-              >
+{
+days:60,
+title:"2 meses"
+},
 
-                {item}
+{
+days:90,
+title:"3 meses"
+}
 
-              </div>
+];
 
-            )
-          )
+return(
 
-        }
+<div className="achievement-box">
 
-      </div>
+<h2>
 
-    </div>
+Logros
 
-  );
+</h2>
+
+<div className="badges">
+
+{
+
+achievements.map(
+
+(item,index)=>{
+
+const unlocked =
+
+days >= item.days;
+
+return(
+
+<div
+
+key={index}
+
+className={
+
+unlocked
+
+?
+
+"badge-card unlocked"
+
+:
+
+"badge-card locked"
+
+}
+
+>
+
+<h3>
+
+{
+
+unlocked
+
+?
+
+"✓"
+
+:
+
+"🔒"
+
+}
+
+</h3>
+
+<p>
+
+{item.title}
+
+</p>
+
+</div>
+
+)
+
+}
+
+)
+
+}
+
+</div>
+
+</div>
+
+)
 
 }

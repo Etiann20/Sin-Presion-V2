@@ -2,27 +2,23 @@ import { differenceInDays } from "date-fns";
 
 export default function DayCounter(){
 
-let startDate =
+const savedDate =
 
 localStorage.getItem(
 "startDate"
 );
 
-if(!startDate){
+const startDate =
 
-startDate =
+savedDate ||
+
 new Date()
 .toISOString()
 .split("T")[0];
 
-localStorage.setItem(
-"startDate",
-startDate
-);
+const days = Math.max(
 
-}
-
-const days =
+0,
 
 differenceInDays(
 
@@ -30,11 +26,15 @@ new Date(),
 
 new Date(startDate)
 
+)
+
 );
 
 return(
 
 <div className="counter">
+
+<div className="counter-content">
 
 <h1>
 
@@ -42,11 +42,13 @@ return(
 
 </h1>
 
-<p>
+<span className="counter-label">
 
 días sin consumir
 
-</p>
+</span>
+
+</div>
 
 </div>
 
