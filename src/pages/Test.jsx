@@ -1,28 +1,27 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import ResultCard from "../components/ResultCard";
-
-export default function Test(){
-
-const navigate = useNavigate();
-
-const savedRisk =
-localStorage.getItem(
-"riskLevel"
-);
-}
 
 const questions = [
 
 {
-text:"¿Te sientes presionado por amistades o conocidos para consumir sustancias?",
+
+text:
+
+"¿Te sientes presionado por amistades o conocidos para consumir sustancias?",
+
 risk:2
+
 },
 
 {
-text:"¿Te cuesta decir que no cuando alguien te ofrece consumir?",
+
+text:
+
+"¿Te cuesta decir que no cuando alguien te ofrece consumir?",
+
 risk:2
+
 },
 
 {
