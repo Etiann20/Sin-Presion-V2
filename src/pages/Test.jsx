@@ -1,5 +1,8 @@
 import { useState } from "react";
 import ResultCard from "../components/ResultCard";
+import { useNavigate } from "react-router-dom"
+
+const navigate = useNavigate();
 
 const questions = [
 
@@ -136,10 +139,14 @@ setFinished(true);
 
 function reset(){
 
-localStorage.clear();
+localStorage.removeItem("riskLevel");
+localStorage.removeItem("startDate");   
+localStorage.removeItem("bestStreak");    
+localStorage.removeItem("relapses");   
+localStorage.removeItem("consumedDays");   
 
-window.location.reload();
-
+navigate("/");
+    
 }
 
 if(savedRisk){
